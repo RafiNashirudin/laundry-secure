@@ -90,11 +90,15 @@
     <div class="login-card">
         <h2>Aplikasi Izzi Laundry</h2>
         <form class="login100-form validate-form" action="cek_login.php" method="post">
+
+            <!-- Perbaikan XSS -->
             <?php if (isset($_GET['message'])) : ?>
                 <div class="alert alert-danger" role="alert">
-                    <?= $_GET['message']; ?>
+                    <?= htmlspecialchars($_GET['message'], ENT_QUOTES, 'UTF-8'); ?>
                 </div>
             <?php endif ?>
+            <!-- Perbaikan XSS -->
+
             <div class="wrap-input100 validate-input" data-validate="Enter username">
                 <input class="input100" type="text" name="username" placeholder="User name" required>
             </div>
